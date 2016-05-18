@@ -1,0 +1,16 @@
+{% for item in menuitems %}
+    <li {% if item.current %}class="active"{% endif %}>
+        {% if item.has_children %}
+            <a href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }} {{ item.order }} {{ item.has_children }} {{ item.prevlevel }} {{ item.level }}</a>
+            <ul>
+            {% if item.prevlevel < item.level %}</ul> </li>{% endif %}
+
+            {% else %}
+            <a href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }} {{ item.order }} {{ item.has_children }} {{ item.prevlevel }} {{ item.level }}</a>
+            {% if item.prevlevel < item.level %}</ul> </li>{% endif %}
+        {% endif %}
+{#        <li {% if item.current %}class="active"{% endif %}>#}
+{#        <a href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }} {{ item.order }} {{ item.has_children }} {{ item.prevlevel }} {{ item.level }}</a>#}
+{#        </li>#}
+{#    {% if item.prevlevel < item.level %}</ul> {% endif %}#}
+{% endfor %}

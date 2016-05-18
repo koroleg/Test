@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sdfdsf</title>
+    <style type="text/css">
+
+        .active  {
+            font-size: 18px;
+            color: red;
+            background-color: aquamarine;
+            width: auto;
+
+        }
+
+    </style>
+</head>
+<body>
+{% load menubuilder %}
+
+<h3>Просто меню</h3>
+{% draw main_menu %}
+
+{% for item in menuitems %}
+    <li >
+        {% if item.has_children %}
+            <a {% if item.current %}class="active"{% endif %} href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }}</a>
+            <ul>
+            {% if item.prevlevel < item.level %}</ul> </li>{% endif %}
+
+            {% else %}
+            <a {% if item.current %}class="active"{% endif %} href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }}</a>
+            {% if item.prevlevel < item.level %}</ul> </li>{% endif %}
+        {% endif %}
+{% endfor %}
+
+
+
+<h3>Коты</h3>
+
+
+{% draw cats %}
+
+
+{% for item in menuitems %}
+    <li >
+        {% if item.has_children %}
+            <a {% if item.current %}class="active"{% endif %} href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }}</a>
+            <ul>
+            {% if item.prevlevel < item.level %}</ul> </li>{% endif %}
+
+            {% else %}
+            <a {% if item.current %}class="active"{% endif %} href="{{ item.url }}" title="{{ item.title|escape }}">{{ item.title }}</a>
+            {% if item.prevlevel < item.level %}</ul> </li>{% endif %}
+        {% endif %}
+{% endfor %}
+
+</body>
+</html>
